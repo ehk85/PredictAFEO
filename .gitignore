@@ -1,0 +1,18 @@
+# Environnement Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Donnees reelles AFEO (confidentialite) - non necessaires pour faire tourner l'application,
+# seulement pour reentrainer le modele (application/entrainer_modele.py, src/*.py)
+donnees/
+base_sql/*.db
+base_sql/*.sql
+
+# Divers
+.DS_Store
+*.log
+
+# Vercel
+.vercel

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AFEO — Connexion</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand"><span class="brand-mark">AF</span> AFEO <span class="brand-tag">— Maintenance prédictive</span></span>
+  </header>
+
+  <div class="login-wrap">
+    <div class="card login-card">
+      <h1>Connexion au back-office</h1>
+      <form method="post" aria-label="Formulaire de connexion">
+        <label for="user">Identifiant</label>
+        <input type="text" id="user" name="user" autocomplete="username" required>
+        <label for="pwd">Mot de passe</label>
+        <input type="password" id="pwd" name="pwd" autocomplete="current-password" required>
+        <button type="submit">Se connecter</button>
+        {% if erreur %}<p class="alert-error" role="alert">⚠ {{ erreur }}</p>{% endif %}
+      </form>
+    </div>
+  </div>
+</body>
+</html>

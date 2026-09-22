@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AFEO — Score de risque de panne</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand"><span class="brand-mark">AF</span> AFEO <span class="brand-tag">— Maintenance prédictive</span></span>
+    <a class="logout-link" href="{{ url_for('logout') }}">Déconnexion</a>
+  </header>
+
+  <main class="page">
+    <div class="page-header">
+      <h1>Score de risque de panne — parc ascenseurs</h1>
+      <p>Saisissez les caractéristiques d'un ascenseur pour estimer son risque de défaillance.</p>
+    </div>
+
+    <form method="post" class="card" aria-label="Formulaire de saisie des caractéristiques de l'ascenseur">
+      <fieldset>
+        <legend>Caractéristiques de l'appareil</legend>
+        <div class="field-grid">
+          <div class="field">
+            <label for="age">Ancienneté de contrat (années)</label>
+            <input type="number" step="any" id="age" name="age" value="10" required>
+          </div>
+          <div class="field">
+            <label for="prix_maint">Prix de maintenance (€)</label>
+            <input type="number" step="any" id="prix_maint" name="prix_maint" value="500" required>
+          </div>
+          <div class="field">
+            <label for="charge">Charge (kg) <span class="hint">optionnel</span></label>
+            <input type="number" step="any" id="charge" name="charge">
+          </div>
+          <div class="field">
+            <label for="niveaux">Nombre de niveaux <span class="hint">optionnel</span></label>
+            <input type="number" step="any" id="niveaux" name="niveaux">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Historique récent (9 derniers mois)</legend>
+        <div class="field-grid">
+          <div class="field">
+            <label for="nb_interv_total">Nombre total d'interventions</label>
+            <input type="number" step="any" id="nb_interv_total" name="nb_interv_total" value="8" required>
+          </div>
+          <div class="field">
+            <label for="nb_depannages">Nombre de dépannages curatifs</label>
+            <input type="number" step="any" id="nb_depannages" name="nb_depannages" value="3" required>
+          </div>
+          <div class="field">
+            <label for="nb_maintenances">Nombre de maintenances préventives</label>
+            <input type="number" step="any" id="nb_maintenances" name="nb_maintenances" value="4" required>
+          </div>
+          <div class="field">
+            <label for="nb_anomalies">Nombre d'anomalies signalées</label>
+            <input type="number" step="any" id="nb_anomalies" name="nb_anomalies" value="1" required>
+          </div>
+          <div class="field">
+            <label for="nb_defaillance_mat">Dont défaillances matérielles</label>
+            <input type="number" step="any" id="nb_defaillance_mat" name="nb_defaillance_mat" value="1" required>
+          </div>
+          <div class="field">
+            <label for="nb_en_defaut">Dont « en défaut »</label>
+            <input type="number" step="any" id="nb_en_defaut" name="nb_en_defaut" value="1" required>
+          </div>
+          <div class="field">
+            <label for="nb_vetuste">Dont « matériel vétuste »</label>
+            <input type="number" step="any" id="nb_vetuste" name="nb_vetuste" value="0" required>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <button type="submit">Estimer le risque</button>
+      </div>
+    </form>
+
+    {% if resultat %}
+    <div class="res {{ resultat.niveau }}" role="status" aria-live="polite">
+      <div class="res-header">
+        <span class="badge {{ resultat.niveau }}">Risque {{ resultat.niveau }}</span>
+        <span class="res-score">{{ resultat.proba }} %<small>score de risque relatif (pas une probabilité exacte)</small></span>
+      </div>
+      <p class="res-action">{{ resultat.action }}</p>
+      <div class="chart-frame">
+        <img src="data:image/png;base64,{{ resultat.graphique }}"
+             alt="Histogramme du risque de panne estimé par mois, du vert (faible) au rouge (élevé)">
+      </div>
+      <p class="hint res-legend">{{ resultat.legende }}</p>
+    </div>
+    {% endif %}
+  </main>
+
+  <footer class="site-footer">
+    Outil d'aide à la décision — usage interne AFEO · démonstration Nexa Digital School
+  </footer>
+</body>
+</html>

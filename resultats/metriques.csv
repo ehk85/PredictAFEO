@@ -1,0 +1,7 @@
+Cible,Modèle,AUC,Précision,Rappel,F1
+Tout dépannage,Régression logistique,0.664,0.549,0.503,0.525
+Tout dépannage,Random Forest,0.772,0.694,0.575,0.629
+Tout dépannage,Gradient Boosting,0.738,0.662,0.499,0.569
+Défaillance matérielle,Régression logistique,0.669,0.429,0.513,0.467
+Défaillance matérielle,Random Forest,0.79,0.679,0.452,0.543
+Défaillance matérielle,Gradient Boosting,0.739,0.597,0.345,0.437
