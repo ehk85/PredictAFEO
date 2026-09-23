@@ -139,9 +139,4 @@ utiliser Render (ci-dessous), plus adapté à ce type d'application.
     └── Journal_de_bord_donnees.md
 ```
 
-## À compléter par l'étudiant (éléments hors périmètre technique)
 
-- URL publique de l'application déployée et URL du dépôt Git (facultatif)
-- Éléments d'entreprise (histoire, valeurs), budget, concurrents locaux réels
-- Références bibliographiques précises (sources < 5 ans)
-- Pages liminaires : page de garde finalisée, logo Nexa, remerciements, résumé
