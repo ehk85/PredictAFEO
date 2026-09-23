@@ -2,8 +2,14 @@
 + un court texte de lecture. Utilise les references sauvegardees dans le modele.
 """
 import io
+import os
 import base64
 import numpy as np
+
+# Sur un hebergement serverless (Vercel...), seul /tmp est inscriptible :
+# matplotlib doit y ecrire son cache au lieu du dossier par defaut (HOME).
+os.environ.setdefault("MPLCONFIGDIR", "/tmp")
+
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt

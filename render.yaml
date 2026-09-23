@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: predictafeo
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    # --timeout 120 : le tout premier chargement du modele (import scikit-learn/scipy +
+    # decompression du fichier .joblib de 53 Mo) peut depasser les 30s par defaut de gunicorn.
+    startCommand: gunicorn application.app:app --timeout 120
